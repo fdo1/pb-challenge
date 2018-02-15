@@ -5,6 +5,7 @@
 $play-grey: #243d42;
 $elements-vertical-spacing: 15px;
 
+
 *{
 	margin: 0;
 	padding: 0;
@@ -23,6 +24,15 @@ body{
 	background-color: $play-grey;
 	color: white;
 }
+.hidden{
+	display: none;
+	max-width: 0;
+}
+.show{
+	display: block;
+	max-width: 100%;
+	margin: 0 auto;
+}
 
 
 //Styling for IDs
@@ -35,7 +45,7 @@ body{
 	border: 1px dashed lightgrey;
 	border-radius: 5px;
 
-	#dropzone__image-template{
+	.image-template{
 		position: relative;
 		display: flex;
 		align-items: center;
@@ -43,8 +53,11 @@ body{
 		height: 100%;
 		background-color: lightgrey;
 	}
-	#dropzone__image{
-
+	.hovered-image-template{
+		background-color: grey;
+	}
+	.dropzone__image{
+		height: 100%;
 	}
 	#dropzone__instructions{
 		margin: 0 auto;
@@ -53,6 +66,10 @@ body{
 			margin: $elements-vertical-spacing 0;
 		}
 	}
+}
+
+#image-input{
+	
 }
 
 

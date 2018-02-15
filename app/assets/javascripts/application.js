@@ -16,10 +16,75 @@
 //= require_tree .
 
 $(document).ready(function() {
+
+	const imageInputField = $("#image-input");
+	const dropzone = $("#dropzone");
+	const image = $(".dropzone__image");
+	const dropzoneInstructions = $("#dropzone__instructions");
+	let file = null;
   
   console.log("jquery");
 
+
+  dropzone.on("dragover", function(event){
+  	console.log("Hovering");
+  	 event.preventDefault();  
+    event.stopPropagation();
+  	$(".image-template").addClass("hovered-image-template");
  
+  });
+  dropzone.on("dragleave", function(event){
+  	console.log("Leaving");
+  	event.preventDefault();  
+    event.stopPropagation();
+  	$(".image-template").removeClass("hovered-image-template");
+  
+  });
+ dropzone.on("drop", function(event){
+  	console.log("Dropped");
+  	event.preventDefault();
+  	event.stopPropagation();
+  	file = event.originalEvent.dataTransfer.files[0]
+  	readImage();
+
+
+  });
+
+
+  $("#dropzone__select-button").on("click", function(){
+  	console.log("Add Image");
+  	imageInputField.click();
+  });
+
+  imageInputField.on("change", function(event){
+  	console.log("Change");
+  	event.preventDefault();  
+    event.stopPropagation();
+    file = imageInputField[0].files[0];
+  	readImage();
+  });
+
+  function readImage(){
+  
+  	console.log("Image Read");
+  	const reader = new FileReader();
+
+	reader.onloadend = function () {
+		console.log(image);
+    	image[0].src = reader.result;
+    	image.addClass("show");
+    	dropzoneInstructions.addClass("hidden");
+  	}
+  	if (file){
+  		reader.readAsDataURL(file);
+  		console.log("File read");
+  	}else{
+  		image.src = "";
+  	}
+
+  	
+  }
+
 
 });
 

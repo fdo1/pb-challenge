@@ -2,9 +2,10 @@
 
 %div.container
 	%div#dropzone
-		%div#dropzone__image-template
-			%img.dropzone__image
+		%div.image-template
+			%img.hidden.dropzone__image
 			%div#dropzone__instructions
 				%p Arrastra ó
-				%div.select-button
+				%div.select-button#dropzone__select-button
 					Selecciona tus imágenes
+	%input.hidden#image-input{type: "file"}
