@@ -2,10 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@font-face { 
+	font-family: Noway; font-weight: lighter; src: url('Noway-Light.otf');
+}
+@font-face{
+	font-family: Noway; font-weight: medium; src: url('Noway-Medium.otf');
+}
+@font-face{
+	font-family: Noway;  src: url('Noway-Regular.otf');
+}
+
 $play-grey: #243d42;
 $play-red: #c61414;
+$play-green: #7bc043;
 $elements-vertical-spacing: 15px;
-
+$form-width: 406px;
+$text-field-height: 25px;
+$text-field-font-size: 13px;
 
 
 *{
@@ -14,15 +27,50 @@ $elements-vertical-spacing: 15px;
 }
 body{
 	text-align: center;
+	font-family: Noway;
+	font-size: 16px;
 }
+label{
+	display: block;
+	margin-top: $elements-vertical-spacing;
+	text-align: left;
+	color: grey;
+
+}
+input[type="text"]{
+	width: 100%;
+	margin-top: $elements-vertical-spacing;
+	padding-left: 5px;
+	height: $text-field-height;
+	font-size: $text-field-font-size;
+	border: 1px solid lightgrey;
+	border-radius: 3px;
+}
+form{
+	width: $form-width;
+	margin: 0 auto;
+}
+textarea{
+	width: 100%;
+	border: 1px solid lightgrey;
+	height: 100px;
+	line-height: $text-field-height;
+	margin-top: $elements-vertical-spacing;
+	padding-left: 5px;
+	font-size: $text-field-font-size;
+	resize: none;
+	overflow-y: scroll;
+	border-radius: 5px;
+}
+
 
 .container{
 	display: block;
 	width: 100%;
+	padding-top: 50px;
 
 }
 .select-button{
-	padding: 10px;
 	background-color: $play-grey;
 	color: white;
 }
@@ -50,18 +98,36 @@ body{
 .white-background{
 		background-color: white !important;
 }
+.button{
+	font-size: $text-field-font-size;
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	border-radius: 5px;
+	height: 30px;
+	margin-top: $elements-vertical-spacing;
+	padding: 0 15px;
+	border:none;
+	vertical-align: middle;
+}
+.save-button{
+	float: right;
+}
+
+
+
 
 
 //Styling for IDs
 
 #dropzone{
-	width: 406px;
+	width: 100%;
 	height: 226px;
 	padding: 15px;
 	margin: 0 auto;
 	border: 1px dashed lightgrey;
 	border-radius: 5px;
-
+	box-sizing: border-box;
 	
 	.image-template{
 		position: relative;
@@ -76,8 +142,11 @@ body{
 
 	.dropzone__image{
 		height: 100%;
+	    width: 100%;
+	    object-fit: cover;
+	    object-position: top;
 	}
-	#dropzone__instructions{
+	&__instructions{
 		margin: 0 auto;
 		p,
 		div{
@@ -97,16 +166,16 @@ body{
 		#dropzone__buttons{
 			margin: 0 auto;
 
-			#dropzone__description-option:hover,
-			#dropzone__delete-option:hover{
-				color: #7bc043;
-				cursor: pointer;
-			}
+			
 			#dropzone__description-option,
 			#dropzone__delete-option{
 				display: inline-block;
 				padding: 10px;
 				vertical-align: middle;
+				&:hover{
+				color: $play-green;
+				cursor: pointer;
+			}
 			}
 			#dropzone__delete-option{
 				border-left: 1px solid black;
@@ -123,6 +192,7 @@ body{
 		#dropzone__delete-buttons{
 			width: 80%;
 			margin: 0 auto;
+			color: white;
 			#dropzone__delete-button,
 			#dropzone__cancel-button{
 				display: inline-block;
@@ -133,8 +203,12 @@ body{
 		}
 	}
 
+}
+
+#save-button{
 
 }
+
 
 
 

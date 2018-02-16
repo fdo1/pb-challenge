@@ -19,12 +19,14 @@ $(document).ready(function() {
 
 	const imageInputField = $("#image-input");
 	const imageTemplate = $(".image-template");
+	const inputContainer = $("#input-container");
 	const dropzone = $("#dropzone");
 	const image = $(".dropzone__image");
 	const dropzoneInstructions = $("#dropzone__instructions");
 	const dropzoneOptions = $(".dropzone__options");
 	const deleteOptions = $(".dropzone__delete-options");
 	const deleteOption = $("#dropzone__delete-option");
+	const descriptionOption = $("#dropzone__description-option");
 	const cancelButton = $("#dropzone__cancel-button");
 	const deleteButton = $("#dropzone__delete-button");
 	let file = null;
@@ -95,6 +97,12 @@ $(document).ready(function() {
   	deleteOptions.removeClass("hidden");
   });
 
+  descriptionOption.on("click", function(){
+  	optionsHidden = true;
+  	inputContainer.removeClass("hidden");
+  	inputContainer.addClass("show");
+  });
+
   cancelButton.on('click', function(){
       optionsHidden = false;
       deleteOptions.addClass("hidden");
@@ -120,7 +128,6 @@ $(document).ready(function() {
   	console.log("Image Read");
   	const reader = new FileReader();
 
-
 	reader.onloadend = function () {
 		userDropped = true;
 		console.log(image);
@@ -129,7 +136,6 @@ $(document).ready(function() {
     	dropzoneInstructions.addClass("hidden");
     	imageTemplate.addClass("white-background");
     	imageTemplate.removeClass("grey-background");
-    	
 
   	}
   	if (file){
@@ -139,7 +145,6 @@ $(document).ready(function() {
   		image.src = "";
   	}
 
-  	
   }
 
 

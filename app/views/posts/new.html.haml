@@ -1,25 +1,31 @@
-%h1 Hola México
+
 
 %div.container
-	%div#dropzone
-		%div.image-template
-			%img.hidden.dropzone__image
-			%div#dropzone__instructions
-				%p Arrastra ó
-				%div.select-button#dropzone__select-button
-					Selecciona tus imágenes
-			%div.dropzone__options
-				%div#dropzone__buttons
-					%div#dropzone__description-option
-						Agregar descripción
-					%div#dropzone__delete-option
-						Eliminar
-			%div.dropzone__delete-options
-				%div#dropzone__delete-buttons
-					%p.alert-message
-						¿Estás seguro de que queires eliminar esta imagen?
-					%div.alert-button#dropzone__delete-button
-						Si, eliminar
-					%div.alert-message#dropzone__cancel-button
-						No, cancelar
-	%input.hidden#image-input{type: "file"}
+	= simple_form_for @post, defaults: { input_html: { class: 'default-form' } } do |f|
+		%div#dropzone
+			%div.image-template
+				%img.hidden.dropzone__image
+				%div#dropzone__instructions
+					%p Arrastra ó
+					%div.button.select-button#dropzone__select-button
+						Selecciona tus imágenes
+				%div.dropzone__options
+					%div#dropzone__buttons
+						%div#dropzone__description-option
+							Agregar descripción
+						%div#dropzone__delete-option
+							Eliminar
+				%div.dropzone__delete-options
+					%div#dropzone__delete-buttons
+						%p.alert-message
+							¿Estás seguro de que queires eliminar esta imagen?
+						%div.button.alert-button#dropzone__delete-button
+							Si, eliminar
+						%div.button.alert-message#dropzone__cancel-button
+							No, cancelar
+		%input.hidden#image-input{type: "file"}
+		%div.hidden#input-container
+			= f.input :title, input_html: {class:"text-field"}, label: "Título"
+			= f.input :description, input_html: {class:"text-field"}, label: "Descripción"
+			= f.button :submit, "Guardar Cambios", class: "button select-button save-button"
+		
