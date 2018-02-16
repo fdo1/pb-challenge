@@ -85,12 +85,13 @@ textarea{
 }
 .show-flex{
 	display: flex !important;
-
+}
+.show-inline-flex{
+	display: inline-flex;
 }
 .alert-button{
 	background-color: $play-red;
 	color: white;
-	border-radius: 5px;
 }
 .grey-background{
 		background-color: grey;
@@ -137,8 +138,6 @@ textarea{
 		height: 100%;
 		background-color: lightgrey;
 	}
-	
-	
 
 	.dropzone__image{
 		height: 100%;
@@ -169,7 +168,7 @@ textarea{
 			
 			#dropzone__description-option,
 			#dropzone__delete-option{
-				display: inline-block;
+				
 				padding: 10px;
 				vertical-align: middle;
 				&:hover{
@@ -195,10 +194,7 @@ textarea{
 			color: white;
 			#dropzone__delete-button,
 			#dropzone__cancel-button{
-				display: inline-block;
-				padding: 15px;
-				cursor: pointer;
-				margin: $elements-vertical-spacing 0;
+				display: inline-flex;
 			}
 		}
 	}

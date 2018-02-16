@@ -55,14 +55,14 @@ $(document).ready(function() {
   	event.preventDefault();
   	event.stopPropagation();
   	file = event.originalEvent.dataTransfer.files[0]
+  	console.log(file);
   	readImage();
-
-
   });
 
 
   $("#dropzone__select-button").on("click", function(){
   	console.log("Add Image");
+  	imageInputField[0].value = null;
   	imageInputField.click();
   });
 
@@ -71,14 +71,24 @@ $(document).ready(function() {
   	event.preventDefault();  
     event.stopPropagation();
     file = imageInputField[0].files[0];
+    console.log(imageInputField[0].value);
   	readImage();
+  	return false;
   });
 
-  imageTemplate.on("mouseover", function(){
+  imageTemplate.on("mouseenter", function(){
 
-  	if (userDropped && !optionsHidden){
+  	console.log(userDropped, optionsHidden, inputContainer.hasClass("hidden"));
+
+  	if (userDropped && !optionsHidden && inputContainer.hasClass("hidden")){
   		console.log("Mouse Over");
   		dropzoneOptions.addClass("show-flex");
+  		descriptionOption.addClass("show-inline-flex");
+  		descriptionOption.removeClass("hidden");
+  	}else if(userDropped && !optionsHidden && inputContainer.hasClass("show") ){
+  		dropzoneOptions.addClass("show-flex");
+  		descriptionOption.addClass("hidden");
+  		descriptionOption.removeClass("show-inline-flex");
   	}
   });
   imageTemplate.on("mouseleave", function(){
@@ -95,12 +105,13 @@ $(document).ready(function() {
   	dropzoneOptions.removeClass("show-flex");
   	deleteOptions.addClass("show-flex");
   	deleteOptions.removeClass("hidden");
+  	
   });
 
   descriptionOption.on("click", function(){
-  	optionsHidden = true;
   	inputContainer.removeClass("hidden");
   	inputContainer.addClass("show");
+  	dropzoneOptions.removeClass("show-flex");
   });
 
   cancelButton.on('click', function(){
@@ -118,6 +129,9 @@ $(document).ready(function() {
      image.removeClass("show");
      dropzoneInstructions.removeClass("hidden");
      imageTemplate.removeClass("white-background");
+     inputContainer.addClass("hidden");
+  	 inputContainer.removeClass("show");
+
   });
 
 
@@ -127,9 +141,9 @@ $(document).ready(function() {
   
   	console.log("Image Read");
   	const reader = new FileReader();
-
+  	userDropped = true;
 	reader.onloadend = function () {
-		userDropped = true;
+		
 		console.log(image);
     	image[0].src = reader.result;
     	image.addClass("show");
