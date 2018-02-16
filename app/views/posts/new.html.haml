@@ -8,4 +8,18 @@
 				%p Arrastra ó
 				%div.select-button#dropzone__select-button
 					Selecciona tus imágenes
+			%div.dropzone__options
+				%div#dropzone__buttons
+					%div#dropzone__description-option
+						Agregar descripción
+					%div#dropzone__delete-option
+						Eliminar
+			%div.dropzone__delete-options
+				%div#dropzone__delete-buttons
+					%p.alert-message
+						¿Estás seguro de que queires eliminar esta imagen?
+					%div.alert-button#dropzone__delete-button
+						Si, eliminar
+					%div.alert-message#dropzone__cancel-button
+						No, cancelar
 	%input.hidden#image-input{type: "file"}

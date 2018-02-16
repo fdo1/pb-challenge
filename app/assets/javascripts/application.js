@@ -18,10 +18,18 @@
 $(document).ready(function() {
 
 	const imageInputField = $("#image-input");
+	const imageTemplate = $(".image-template");
 	const dropzone = $("#dropzone");
 	const image = $(".dropzone__image");
 	const dropzoneInstructions = $("#dropzone__instructions");
+	const dropzoneOptions = $(".dropzone__options");
+	const deleteOptions = $(".dropzone__delete-options");
+	const deleteOption = $("#dropzone__delete-option");
+	const cancelButton = $("#dropzone__cancel-button");
+	const deleteButton = $("#dropzone__delete-button");
 	let file = null;
+	let userDropped = false;
+	let optionsHidden = false;
   
   console.log("jquery");
 
@@ -30,14 +38,14 @@ $(document).ready(function() {
   	console.log("Hovering");
   	 event.preventDefault();  
     event.stopPropagation();
-  	$(".image-template").addClass("hovered-image-template");
+  	$(".image-template").addClass("grey-background");
  
   });
   dropzone.on("dragleave", function(event){
   	console.log("Leaving");
   	event.preventDefault();  
     event.stopPropagation();
-  	$(".image-template").removeClass("hovered-image-template");
+  	imageTemplate.removeClass("grey-background");
   
   });
  dropzone.on("drop", function(event){
@@ -64,16 +72,65 @@ $(document).ready(function() {
   	readImage();
   });
 
+  imageTemplate.on("mouseover", function(){
+
+  	if (userDropped && !optionsHidden){
+  		console.log("Mouse Over");
+  		dropzoneOptions.addClass("show-flex");
+  	}
+  });
+  imageTemplate.on("mouseleave", function(){
+
+  	if (userDropped){
+  		console.log("Mouse Leave");
+  		dropzoneOptions.removeClass("show-flex");
+  	}
+  });
+
+
+  deleteOption.on("click", function(){
+  	optionsHidden = true;
+  	dropzoneOptions.removeClass("show-flex");
+  	deleteOptions.addClass("show-flex");
+  	deleteOptions.removeClass("hidden");
+  });
+
+  cancelButton.on('click', function(){
+      optionsHidden = false;
+      deleteOptions.addClass("hidden");
+      deleteOptions.removeClass("show-flex");
+   });
+
+  deleteButton.on("click", function(){
+  	 optionsHidden = false;
+     userDropped = false;
+     deleteOptions.addClass("hidden");
+     deleteOptions.removeClass("show-flex");
+     image[0].src = "";
+     image.removeClass("show");
+     dropzoneInstructions.removeClass("hidden");
+     imageTemplate.removeClass("white-background");
+  });
+
+
+
+
   function readImage(){
   
   	console.log("Image Read");
   	const reader = new FileReader();
 
+
 	reader.onloadend = function () {
+		userDropped = true;
 		console.log(image);
     	image[0].src = reader.result;
     	image.addClass("show");
     	dropzoneInstructions.addClass("hidden");
+    	imageTemplate.addClass("white-background");
+    	imageTemplate.removeClass("grey-background");
+    	
+
   	}
   	if (file){
   		reader.readAsDataURL(file);

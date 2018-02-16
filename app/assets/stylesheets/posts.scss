@@ -3,7 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $play-grey: #243d42;
+$play-red: #c61414;
 $elements-vertical-spacing: 15px;
+
 
 
 *{
@@ -33,6 +35,21 @@ body{
 	max-width: 100%;
 	margin: 0 auto;
 }
+.show-flex{
+	display: flex !important;
+
+}
+.alert-button{
+	background-color: $play-red;
+	color: white;
+	border-radius: 5px;
+}
+.grey-background{
+		background-color: grey;
+}
+.white-background{
+		background-color: white !important;
+}
 
 
 //Styling for IDs
@@ -45,6 +62,7 @@ body{
 	border: 1px dashed lightgrey;
 	border-radius: 5px;
 
+	
 	.image-template{
 		position: relative;
 		display: flex;
@@ -53,9 +71,9 @@ body{
 		height: 100%;
 		background-color: lightgrey;
 	}
-	.hovered-image-template{
-		background-color: grey;
-	}
+	
+	
+
 	.dropzone__image{
 		height: 100%;
 	}
@@ -66,10 +84,58 @@ body{
 			margin: $elements-vertical-spacing 0;
 		}
 	}
+	.dropzone__options{
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		max-height: 70px;
+		height: 70px;
+		display: none;
+		align-items: center;
+		background-color: rgba(255,255,255,0.75);
+
+		#dropzone__buttons{
+			margin: 0 auto;
+
+			#dropzone__description-option:hover,
+			#dropzone__delete-option:hover{
+				color: #7bc043;
+				cursor: pointer;
+			}
+			#dropzone__description-option,
+			#dropzone__delete-option{
+				display: inline-block;
+				padding: 10px;
+				vertical-align: middle;
+			}
+			#dropzone__delete-option{
+				border-left: 1px solid black;
+			}
+		}
+	}
+	.dropzone__delete-options{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		display: none;
+		background-color: rgba(0,0,0,0.4);
+		align-items: center;
+		#dropzone__delete-buttons{
+			width: 80%;
+			margin: 0 auto;
+			#dropzone__delete-button,
+			#dropzone__cancel-button{
+				display: inline-block;
+				padding: 15px;
+				cursor: pointer;
+				margin: $elements-vertical-spacing 0;
+			}
+		}
+	}
+
+
 }
 
-#image-input{
-	
-}
+
 
 
